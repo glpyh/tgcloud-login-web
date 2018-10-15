@@ -5,61 +5,65 @@ import { User, Error } from "./views";
 Vue.use(Router);
 
 export default new Router({
-  mode: 'history',
+  mode: "history",
   routes: [
     {
-      path: '/',
-      component: resolve => require(['@/views/layout/index.vue'], resolve),
-      redirect: { name: 'Login' },
+      path: "/",
+      component: resolve => require(["@/views/layout/index.vue"], resolve),
+      redirect: { name: "Login" },
       children: [
         {
           meta: {
-            name: '用户登录'
+            name: "用户登录"
           },
-          path: 'login',
-          name: 'Login',
+          path: "login",
+          name: "Login",
           component: User.Login
         },
         {
           meta: {
-            name: '用户注册'
+            name: "用户注册"
           },
-          path: 'register',
-          name: 'Register',
+          path: "register",
+          name: "Register",
           component: User.Register
-        }, {
+        },
+        {
           meta: {
-            name: '忘记密码'
+            name: "忘记密码"
           },
-          path: 'resetPwdEmail',
-          name: 'ResetPwdEmail',
+          path: "resetPwdEmail",
+          name: "ResetPwdEmail",
           component: User.ResetPwdEmail
-        }, {
+        },
+        {
           meta: {
-            name: '忘记密码'
+            name: "忘记密码"
           },
-          path: 'resetPwdPhone',
-          name: 'ResetPwdPhone',
+          path: "resetPwdPhone",
+          name: "ResetPwdPhone",
           component: User.ResetPwdPhone
-        }, {
+        },
+        {
           meta: {
-            name: '重置密码'
+            name: "重置密码"
           },
-          path: 'resetPwd',
-          name: 'ResetPwd',
+          path: "resetPwd",
+          name: "ResetPwd",
           component: User.ResetPwd
-        }, {
+        },
+        {
           meta: {
-            name: '激活用户'
+            name: "激活用户"
           },
-          path: 'activeUser',
-          name: 'ActiveUser',
+          path: "activeUser",
+          name: "ActiveUser",
           component: User.ActiveUser
         }
       ]
     },
     {
-      path: '*',
+      path: "*",
       component: Error.NotFoundPage
     }
   ]

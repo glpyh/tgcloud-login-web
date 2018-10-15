@@ -1,7 +1,4 @@
-import User from './user'
-import Error from './error'
+import User from "./user";
+import Error from "./error";
 
-export {
-    User,
-    Error
-}
+export { User, Error };

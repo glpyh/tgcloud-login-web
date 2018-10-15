@@ -1,35 +1,35 @@
 <template>
-    <div style="display: inline-block; margin-bottom: 60px;">
-        <img class="main-img" src="" alt="">
-        <div class="res">
-            <div class="main-bot">
-                <input class="login-input" @keyup.13="doLogin" v-model="loginForm.loginName" type="text" placeholder="请输入帐号" />
-                <input class="login-input" @keyup.13="doLogin" v-model="loginForm.loginPwd" type="password" placeholder="请输入密码" />
-                <div class="image-code-div">
-                    <input type="text" v-model="loginForm.captchaCode" placeholder="验证码">
-                    <img v-lazy="imageCode" @click="getImage" />
-                </div>
-                <div class="main-password">
-                    <input id="button" type="checkbox" class="button" @click="rememberMeFn" :checked="rememberMe" value="Bike" title="" />
-                    <label for="button" class="remMe">记住我</label>
-                    <a class="fog" @click="loadPage('ResetPwdEmail')">忘记密码?</a>
-                </div>
-                <button class="login" @click="doLogin">登录</button>
-                <div class="other">
-                    <hr />
-                    <p>其他方式登录</p>
-                    <hr />
-                </div>
-                <div class="last">
-                    <a href="#"><img src="@/assets/images/login/git1.png" alt=""></a>
-                    <a href="#"><img src="@/assets/images/login/git2.png" alt=""></a>
-                    <a href="#"><img src="@/assets/images/login/git3.png" alt=""></a>
-                    <a href="#"><img src="@/assets/images/login/git4.png" alt=""></a>
-                    <a href="#"><img src="@/assets/images/login/git5.png" alt=""></a>
-                </div>
-            </div>
+  <div style="display: inline-block; margin-bottom: 60px;">
+    <img class="main-img" src="" alt="">
+    <div class="res">
+      <div class="main-bot">
+        <input class="login-input" @keyup.13="doLogin" v-model="loginForm.loginName" type="text" placeholder="请输入帐号" />
+        <input class="login-input" @keyup.13="doLogin" v-model="loginForm.loginPwd" type="password" placeholder="请输入密码" />
+        <div class="image-code-div">
+          <input type="text" v-model="loginForm.captchaCode" placeholder="验证码">
+          <img v-lazy="imageCode" @click="getImage" />
         </div>
+        <div class="main-password">
+          <input id="button" type="checkbox" class="button" @click="rememberMeFn" :checked="rememberMe" value="Bike" title="" />
+          <label for="button" class="remMe">记住我</label>
+          <a class="fog" @click="loadPage('ResetPwdEmail')">忘记密码?</a>
+        </div>
+        <button class="login" @click="doLogin">登录</button>
+        <div class="other">
+          <hr />
+          <p>其他方式登录</p>
+          <hr />
+        </div>
+        <div class="last">
+          <a href="#"><img src="@/assets/images/login/git1.png" alt=""></a>
+          <a href="#"><img src="@/assets/images/login/git2.png" alt=""></a>
+          <a href="#"><img src="@/assets/images/login/git3.png" alt=""></a>
+          <a href="#"><img src="@/assets/images/login/git4.png" alt=""></a>
+          <a href="#"><img src="@/assets/images/login/git5.png" alt=""></a>
+        </div>
+      </div>
     </div>
+  </div>
 </template>
 <script type="text/ecmascript-6">
 export default {

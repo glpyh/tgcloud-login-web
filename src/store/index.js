@@ -1,8 +1,8 @@
 import Vue from "vue";
 import Vuex from "vuex";
 
-import user from "./modules/user"
-import getters from "./getters"
+import user from "./modules/user";
+import getters from "./getters";
 
 Vue.use(Vuex);
 

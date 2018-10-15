@@ -1,10 +1,10 @@
 <template>
-    <div class="footer-big">
-        <div class="footer-inner w">
-            <a href="http://paascloud.net" target="_blank" class="footer-l">© 2017 - 2019 tgcloud.net 版权所有</a>
-            <a href="http://paascloud.net" target="_blank" class="footer-r">京ICP备17045502号</a>
-        </div>
+  <div class="footer-big">
+    <div class="footer-inner w">
+      <a href="http://paascloud.net" target="_blank" class="footer-l">© 2017 - 2019 tgcloud.net 版权所有</a>
+      <a href="http://paascloud.net" target="_blank" class="footer-r">京ICP备17045502号</a>
     </div>
+  </div>
 </template>
 
 <style rel="stylesheet/scss" lang="scss">

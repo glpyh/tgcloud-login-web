@@ -60,8 +60,8 @@ export default {
       let that = this;
       that
         .$http({
-          method: "POST",
-          url: "/uac/auth/code/image",
+          method: "GET",
+          url: "aus/auth/code/image",
           headers: {
             deviceId: that.deviceId
           }

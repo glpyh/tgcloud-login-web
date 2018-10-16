@@ -16,7 +16,7 @@
           </div>
           <input type="button" @click="submitRestPwdWithEmail" value="提交" :class="activeSubmitButton ? 'active-reset-submit-email' : 'inactive-reset-submit-email'">
         </div>
-        <footer class="reset-email"><a @click="loadPage('ResetPwdPhone')">其他方式重置密码</a></footer>
+        <footer class="reset-email"><a @click="loadPage('ResetPwdPhone')">短信方式重置密码</a></footer>
       </form>
     </div>
   </div>
@@ -91,8 +91,8 @@ export default {
       let that = this;
       that.deviceId = new Date().getTime();
       this.$http({
-        method: "POST",
-        url: "/uac/auth/code/image",
+        method: "GET",
+        url: "aus/auth/code/image",
         headers: {
           deviceId: that.deviceId
         },
@@ -113,7 +113,7 @@ export default {
 .reset-outer {
   height: 360px;
   position: relative;
-  margin-top: 100px;
+  margin-top: 50px;
 }
 
 .reset-pwd-email {
@@ -340,5 +340,6 @@ export default {
   margin-left: -149px;
   font-size: 14px !important;
   color: #8c92a4;
+  cursor: pointer;
 }
 </style>

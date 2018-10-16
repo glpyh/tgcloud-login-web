@@ -1,5 +1,6 @@
 import axios from "axios";
 import { Message } from "element-ui";
+// import store from "@/store";
 
 // create an axios instance
 const service = axios.create({
@@ -11,6 +12,8 @@ const service = axios.create({
 service.interceptors.request.use(
   config => {
     // Do something before request is sent
+    // let redirectURL = "www.baidu.com";
+    // if (redirectURL) store.dispatch("update_redirect_uri", redirectURL);
 
     return config;
   },
@@ -51,9 +54,9 @@ service.interceptors.response.use(
   },
   error => {
     let message = error.message;
-    if (error.response.status === 404) {
-      message = "请求资源离家出走了,等一会就回来";
-    }
+    // if (error.response.status && error.response.status === 404) {
+    //   message = "请求资源离家出走了,等一会就回来";
+    // }
     console.log("err" + error); // for debug
     Message({
       message: message,

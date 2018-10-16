@@ -29,8 +29,8 @@ Vue.mixin(mixin);
 
 Vue.use(VueLazyload, {
   preLoad: 1.3,
-  error: "/public/loading-svg/loading-bars.svg",
-  loading: "/public/loading-svg/loading-spinning-bubbles.svg",
+  error: "@/assets/images/loading-svg/loading-bars.svg",
+  loading: "@/assets/images/loading-svg/loading-spinning-bubbles.svg",
   attempt: 2
 });
 

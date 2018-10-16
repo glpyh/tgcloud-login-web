@@ -68,10 +68,10 @@ export default {
           "Content-Type": "application/x-www-form-urlencoded",
           deviceId: this.deviceId
         },
-        url: "/uac/auth/form",
+        url: "/aus/auth/form",
         auth: {
-          username: "paascloud-client-uac",
-          password: "paascloudClientSecret"
+          username: "tgcloud-microservice-uac",
+          password: "tgcloudClientSecret"
         },
         params: {
           username: loginName,
@@ -95,8 +95,8 @@ export default {
       let that = this;
       that
         .$http({
-          method: "POST",
-          url: "/uac/auth/code/image",
+          method: "GET",
+          url: "aus/auth/code/image",
           headers: {
             deviceId: that.deviceId
           }

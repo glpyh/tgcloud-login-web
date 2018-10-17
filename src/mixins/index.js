@@ -46,15 +46,9 @@ let mixin = {
       });
     },
     ajax(param) {
-      let { type, url, data, success, isUnMusk, loading } = param;
+      let { type, url, data, success, isUnMusk } = param;
       if (!isUnMusk) {
-        this.$pcNProgress.start();
-      }
-      if (loading && !this.$store.getters.getAjaxLoading) {
-        this.$store.dispatch("show_ajaxLoading");
-      }
-      if (loading && !this.$store.getters.getButtonLoading) {
-        this.$store.dispatch("show_buttonLoading");
+        this.$nprogress.start();
       }
       this.$http({
         method: type || "POST",
@@ -62,13 +56,7 @@ let mixin = {
         data: data || ""
       })
         .then(res => {
-          this.$pcNProgress.done();
-          if (loading && this.$store.getters.getAjaxLoading) {
-            this.$store.dispatch("hide_ajaxLoading");
-          }
-          if (loading && this.$store.getters.getButtonLoading) {
-            this.$store.dispatch("hide_buttonLoading");
-          }
+          this.$nprogress.done();
           if (success) {
             success(res);
           } else {
@@ -76,69 +64,8 @@ let mixin = {
           }
         })
         .catch(error => {
-          this.$pcNProgress.done();
+          this.$nprogress.done();
           this.$loading = false;
-          if (loading && this.$store.getters.getAjaxLoading) {
-            this.$store.dispatch("hide_ajaxLoading");
-          }
-          if (loading && this.$store.getters.getButtonLoading) {
-            this.$store.dispatch("hide_buttonLoading");
-          }
-          console.error(error);
-        });
-    },
-    ajaxBox(param) {
-      let {
-        type,
-        data,
-        url,
-        message,
-        success,
-        iconType,
-        confirmButtonText,
-        cancelButtonText,
-        title
-      } = param;
-      if (!message) {
-        alert("必须输入提示信息!");
-        return;
-      }
-      let response;
-      this.$pcMessageBox({
-        title: title || "消息",
-        message: message,
-        showCancelButton: true,
-        confirmButtonText: confirmButtonText || "确定",
-        cancelButtonText: cancelButtonText || "取消",
-        type: iconType || "warning",
-        closeOnPressEscape: true,
-        beforeClose: (action, instance, done) => {
-          if (action === "confirm") {
-            instance.confirmButtonLoading = true;
-            // instance.confirmButtonText = '执行中...';
-            this.ajax({
-              type: type,
-              url: url,
-              data: data,
-              success: res => {
-                done();
-                response = res;
-              }
-            });
-            setTimeout(() => {
-              instance.confirmButtonLoading = false;
-            }, 400);
-          } else {
-            done();
-          }
-        }
-      })
-        .then(() => {
-          if (success) {
-            success(response);
-          }
-        })
-        .catch(error => {
           console.error(error);
         });
     },

@@ -54,10 +54,7 @@ export default {
   methods: {
     submitRestPwdWithPhone() {
       if (!this.activeSendSmsButton) {
-        this.$store.dispatch("new_notice", {
-          autoClose: true,
-          content: "校验失败"
-        });
+        this.errorMsg("校验失败", true);
         return;
       }
       let that = this;
@@ -92,10 +89,7 @@ export default {
       let mobileNo = this.resetPwdPhoneForm.mobileNo;
       this.isTimerStop = false;
       if (!mobileNo) {
-        this.$store.dispatch("new_notice", {
-          autoClose: true,
-          content: "手机号码不能为空"
-        });
+        this.errorMsg("手机号码不能为空", true);
         return;
       }
       this.$refs.timerBtn.start();
@@ -127,10 +121,7 @@ export default {
       let mobileNo = this.resetPwdPhoneForm.mobileNo;
       let smsCode = this.resetPwdPhoneForm.smsCode;
       if (!mobileNo) {
-        this.$store.dispatch("new_notice", {
-          autoClose: true,
-          content: "手机号码不能为空"
-        });
+        this.errorMsg("手机号码不能为空", true);
         return;
       }
       if (!smsCode) {
@@ -148,10 +139,7 @@ export default {
         }
       }).then(res => {
         if (!res.result) {
-          this.$store.dispatch("new_notice", {
-            autoClose: true,
-            content: res.message
-          });
+          this.successMsg(res.message, true);
           that.checkSmsCodeResult = res.result;
         }
         that.checkSmsCodeResult = res.result;
@@ -161,20 +149,14 @@ export default {
       this.checkTelephoneResult = false;
       let mobileNo = this.resetPwdPhoneForm.mobileNo;
       if (!mobileNo) {
-        this.$store.dispatch("new_notice", {
-          autoClose: true,
-          content: "手机号码不能为空"
-        });
+        this.errorMsg("手机号码不能为空", true);
         return;
       }
       let that = this;
       let reg = /^1\d{10}$/;
       let result = reg.test(mobileNo);
       if (!result) {
-        that.$store.dispatch("new_notice", {
-          autoClose: true,
-          content: "手机号码格式不正确"
-        });
+        this.errorMsg("手机号码格式不正确", true);
       } else {
         this.$http({
           method: "POST",
@@ -182,10 +164,7 @@ export default {
           data: ""
         }).then(res => {
           if (!res.result) {
-            that.$store.dispatch("new_notice", {
-              autoClose: true,
-              content: "帐号没有激活"
-            });
+            this.errorMsg("帐号没有激活", true);
           }
           that.checkTelephoneResult = res.result;
         });

@@ -1,37 +1,37 @@
 <template>
-    <div style="display: inline-block; margin-bottom: 70px;">
-        <img class="main-img" src="" alt="">
-        <div class="res">
-            <div class="main-bot">
-                <div class="field-inline">
-                    <p>登录名</p>
-                    <input class='main-input' type="text" v-model="registerForm.loginName" />
-                </div>
-                <div class="field-inline">
-                    <p>邮箱</p>
-                    <input class='main-input' type="text" v-model="registerForm.email" />
-                </div>
-                <div class="field-inline">
-                    <p>密码</p>
-                    <input class='main-input' type="password" v-model="registerForm.loginPwd" />
-                </div>
-                <div class="field-inline">
-                    <p>确认密码</p>
-                    <input class='main-input' type="password" v-model="registerForm.confirmPwd" />
-                </div>
-                <div class="field-inline">
-                    <p>手机号</p>
-                    <input class='main-input' type="text" v-model="registerForm.mobileNo" />
-                </div>
-                <div class="register-check-dev">
-                    <p>验证码</p>
-                    <input type="text" v-model="registerForm.imageCode" class="inputMa" placeholder="验证码">
-                    <img v-lazy="imageCode" @click="getImage" class="check-ma" />
-                </div>
-                <button class="register-btn" @click="submit">注册</button>
-            </div>
+  <div style="display: inline-block; margin-bottom: 70px;">
+    <img class="main-img" src="" alt="">
+    <div class="res">
+      <div class="main-bot">
+        <div class="field-inline">
+          <p>登录名</p>
+          <input class='main-input' type="text" v-model="registerForm.loginName" />
         </div>
+        <div class="field-inline">
+          <p>邮箱</p>
+          <input class='main-input' type="text" v-model="registerForm.email" />
+        </div>
+        <div class="field-inline">
+          <p>密码</p>
+          <input class='main-input' type="password" v-model="registerForm.loginPwd" />
+        </div>
+        <div class="field-inline">
+          <p>确认密码</p>
+          <input class='main-input' type="password" v-model="registerForm.confirmPwd" />
+        </div>
+        <div class="field-inline">
+          <p>手机号</p>
+          <input class='main-input' type="text" v-model="registerForm.mobileNo" />
+        </div>
+        <div class="register-check-dev">
+          <p>验证码</p>
+          <input type="text" v-model="registerForm.imageCode" class="inputMa" placeholder="验证码">
+          <img v-lazy="imageCode" @click="getImage" class="check-ma" />
+        </div>
+        <button class="register-btn" @click="submit">注册</button>
+      </div>
     </div>
+  </div>
 </template>
 <script type="text/ecmascript-6">
 import PcTimerButton from "@/components/form/timer-button/index.vue";
@@ -75,17 +75,11 @@ export default {
       // 验证成功
       if (validateResult.status) {
         this.register(() => {
-          this.$store.dispatch("new_notice", {
-            autoClose: true,
-            content: "注册成功, 请登录邮箱激活用户"
-          });
+          this.successMsg("注册成功, 请登录邮箱激活用户", true);
           this.loadPage("Login");
         });
       } else {
-        this.$store.dispatch("new_notice", {
-          autoClose: true,
-          content: validateResult.msg
-        });
+        this.errorMsg(validateResult.msg, true);
       }
     },
     register(resolve) {

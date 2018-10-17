@@ -51,10 +51,7 @@ export default {
     doLogin() {
       let validateResult = this.formValidate();
       if (!validateResult.status) {
-        this.$store.dispatch("new_notice", {
-          autoClose: true,
-          content: validateResult.msg
-        });
+        this.errorMsg(validateResult.msg, true);
         return;
       }
       this.login();

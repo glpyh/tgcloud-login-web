@@ -24,10 +24,7 @@ export default {
         success: res => {
           if (res.status === 200) {
             that.message = "激活用户成功, 请重新登录";
-            that.$store.dispatch("new_notice", {
-              autoClose: true,
-              content: that.message
-            });
+            this.successMsg(that.message, true);
           }
           that.loadPage("Login");
         }

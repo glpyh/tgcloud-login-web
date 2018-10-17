@@ -52,10 +52,7 @@ export default {
         })
         .then(res => {
           if (res.code === 200) {
-            that.$store.dispatch("new_notice", {
-              autoClose: true,
-              content: "重置密码邮件已发送，请按邮件提示重置密码"
-            });
+            this.successMsg("重置密码邮件已发送，请按邮件提示重置密码", true);
             that.loadPage("Login");
           } else {
             that.getImage();

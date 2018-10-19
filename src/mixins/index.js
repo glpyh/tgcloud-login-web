@@ -22,15 +22,15 @@ let mixin = {
       this.loadPage("Index");
     },
     successMsg(msg, showClose) {
-      this.message(msg, "success", showClose);
+      this.showMessage(msg, "success", showClose);
     },
     errorMsg(msg, showClose) {
-      this.message(msg, "error", showClose);
+      this.showMessage(msg, "error", showClose);
     },
     warnMsg(msg, showClose) {
-      this.message(msg, "warning", showClose);
+      this.showMessage(msg, "warning", showClose);
     },
-    message(msg, type, showClose) {
+    showMessage(msg, type, showClose) {
       this.$message({
         showClose: showClose || false,
         message: msg,

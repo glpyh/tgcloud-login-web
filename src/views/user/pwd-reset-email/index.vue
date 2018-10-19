@@ -80,6 +80,9 @@ export default {
           url: "/uac/auth/checkEmailActive/" + email,
           data: ""
         }).then(res => {
+          if (!res.result) {
+            this.warnMsg("当前输入的邮箱不可用", true);
+          }
           that.checkEmailResult = res.result;
         });
       }
@@ -89,7 +92,7 @@ export default {
       that.deviceId = new Date().getTime();
       this.$http({
         method: "GET",
-        url: "aus/auth/code/image",
+        url: "/aus/auth/code/image",
         headers: {
           deviceId: that.deviceId
         },

@@ -54,9 +54,15 @@ service.interceptors.response.use(
   },
   error => {
     let message = error.message;
-    // if (error.response.status && error.response.status === 404) {
-    //   message = "请求资源离家出走了,等一会就回来";
-    // }
+    if (error.response.status && error.response.status === 404) {
+      message = "请求资源离家出走了,等一会就回来";
+    } else if (
+      error.response &&
+      error.response.data &&
+      error.response.data.message
+    ) {
+      message = error.response.data.message;
+    }
     console.log("err" + error); // for debug
     Message({
       message: message,

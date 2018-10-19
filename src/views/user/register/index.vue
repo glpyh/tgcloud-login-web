@@ -5,7 +5,7 @@
       <div class="main-bot">
         <div class="field-inline">
           <p>登录名</p>
-          <input class='main-input' type="text" v-model="registerForm.loginName" />
+          <input class='main-input' type="text" v-model="registerForm.userName" />
         </div>
         <div class="field-inline">
           <p>邮箱</p>
@@ -13,7 +13,7 @@
         </div>
         <div class="field-inline">
           <p>密码</p>
-          <input class='main-input' type="password" v-model="registerForm.loginPwd" />
+          <input class='main-input' type="password" v-model="registerForm.password" />
         </div>
         <div class="field-inline">
           <p>确认密码</p>
@@ -40,9 +40,9 @@ export default {
     return {
       imageCode: "",
       registerForm: {
-        loginName: "",
+        userName: "",
         mobileNo: "",
-        loginPwd: "",
+        password: "",
         email: "",
         confirmPwd: "",
         imageCode: "",
@@ -108,7 +108,7 @@ export default {
         msg: ""
       };
       // 验证用户名是否为空
-      if (!this.validate(this.registerForm.loginName, "require")) {
+      if (!this.validate(this.registerForm.userName, "require")) {
         result.msg = "用户名不能为空";
         return result;
       }
@@ -120,7 +120,7 @@ export default {
       //            result.msg = '用户名已存在';
       //            return result;
       //          }
-      //        }, this.registerForm.loginName, 'loginName');
+      //        }, this.registerForm.userName, 'userName');
       // 验证邮箱
       if (!this.validate(this.registerForm.email, "require")) {
         result.msg = "邮箱不能为空";
@@ -142,7 +142,7 @@ export default {
       //          }
       //        }, this.registerForm.email, 'email');
       // 验证 密码
-      if (!this.validate(this.registerForm.loginPwd, "require")) {
+      if (!this.validate(this.registerForm.password, "require")) {
         result.msg = "密码不能为空";
         return result;
       }
@@ -151,7 +151,7 @@ export default {
         result.msg = "确认密码不能为空";
         return result;
       }
-      if (!this.validate(this.registerForm.loginPwd, "pwd")) {
+      if (!this.validate(this.registerForm.password, "pwd")) {
         result.msg = "密码格式不正确";
         return result;
       }
@@ -160,7 +160,7 @@ export default {
         return result;
       }
       // 验证两次输入的密码是否一致
-      if (this.registerForm.loginPwd !== this.registerForm.confirmPwd) {
+      if (this.registerForm.password !== this.registerForm.confirmPwd) {
         result.msg = "两次输入的密码不一致";
         return result;
       }

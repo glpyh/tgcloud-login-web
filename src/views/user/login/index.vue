@@ -3,11 +3,11 @@
     <img class="main-img" src="" alt="">
     <div class="res">
       <div class="main-bot">
-        <input class="login-input" @keyup.13="doLogin" v-model="loginForm.loginName" type="text" placeholder="请输入帐号" />
-        <input class="login-input" @keyup.13="doLogin" v-model="loginForm.loginPwd" type="password" placeholder="请输入密码" />
+        <input class="login-input" @keyup.13="doLogin" v-model="loginForm.userName" type="text" placeholder="请输入帐号" />
+        <input class="login-input" @keyup.13="doLogin" v-model="loginForm.password" type="password" placeholder="请输入密码" />
         <div class="image-code-div">
           <input type="text" v-model="loginForm.captchaCode" placeholder="验证码">
-          <img v-lazy="imageCode" @click="getImage" />
+          <img v-lazy="imageCode" :key="imageCode" @click="getImage" />
         </div>
         <div class="main-password">
           <input id="button" type="checkbox" class="button" @click="rememberMeFn" :checked="rememberMe" value="Bike" title="" />
@@ -38,8 +38,8 @@ export default {
       imageCode: "",
       deviceId: "",
       loginForm: {
-        loginName: "",
-        loginPwd: "",
+        userName: "",
+        password: "",
         captchaCode: ""
       }
     };
@@ -57,8 +57,8 @@ export default {
       this.login();
     },
     login() {
-      let loginName = this.loginForm.loginName;
-      let loginPwd = this.loginForm.loginPwd;
+      let userName = this.loginForm.userName;
+      let password = this.loginForm.password;
       this.$http({
         method: "POST",
         headers: {
@@ -71,8 +71,8 @@ export default {
           password: "tgcloudClientSecret"
         },
         params: {
-          username: loginName,
-          password: loginPwd,
+          username: userName,
+          password: password,
           imageCode: this.loginForm.captchaCode
         }
       })
@@ -110,11 +110,11 @@ export default {
         status: false,
         msg: ""
       };
-      if (!this.validate(this.loginForm.loginName, "require")) {
+      if (!this.validate(this.loginForm.userName, "require")) {
         result.msg = "用户名不能为空";
         return result;
       }
-      if (!this.validate(this.loginForm.loginPwd, "require")) {
+      if (!this.validate(this.loginForm.password, "require")) {
         result.msg = "密码不能为空";
         return result;
       }

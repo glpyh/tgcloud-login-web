@@ -45,10 +45,15 @@ Vue.config.productionTip = false;
 
 Vue.mixin(mixin);
 
+// 正确的写法有两种：
+// 第一种：你的图片在assets里面：
+// loading: require('./assets/loading.gif'),
+// 第二种：你的图片在static里面
+// loading: '../static/loading.gif'
 Vue.use(VueLazyload, {
   preLoad: 1.3,
-  error: "./assets/images/loading-svg/loading-bars.svg",
-  loading: "./assets/images/loading-svg/loading-spinning-bubbles.svg",
+  error: require("./assets/images/loading-svg/loading-bars.svg"),
+  loading: require("./assets/images/loading-svg/loading-spinning-bubbles.svg"),
   attempt: 2
 });
 

@@ -7,13 +7,18 @@
 export default {
   data() {
     return {
-      message: "请稍候...",
+      message: "正在尝试激活用户，请稍候...",
       activeToken: ""
     };
   },
   created() {
     this.activeToken = this.$route.query.activeToken;
     console.info(this.activeToken);
+    if (!this.activeToken) {
+      this.errorMsg("激活请求链接异常,无法激活");
+      this.message = "激活请求链接异常,无法激活";
+      return;
+    }
     this.activeUserFn(this.activeToken);
   },
   methods: {

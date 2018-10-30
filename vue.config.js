@@ -7,7 +7,9 @@ module.exports = {
   lintOnSave: true,
   // webpack-dev-server 相关配置
   devServer: {
-    port: 9999
+    port: 9999,
+    host: "passport.tgcloud.net",
+    disableHostCheck: true
   },
   // webpack配置
   // see https://github.com/vuejs/vue-cli/blob/dev/docs/webpack.md

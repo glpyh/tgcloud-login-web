@@ -51,7 +51,7 @@ const user = {
       if (!state.redirectUri) {
         state.redirectUri = tgCookie.get(enums.USER.REDIRECT_URI)
           ? tgCookie.get(enums.USER.REDIRECT_URI)
-          : "http://www.tgcloud.net";
+          : process.env.VUE_APP_Web;
       }
       return state.redirectUri;
     }
@@ -191,11 +191,7 @@ const user = {
 };
 
 function jumpLoginPage() {
-  if (process.env.NODE_ENV === "production") {
-    window.location.href = "http://login.tgcloud.net/login";
-  } else {
-    window.location.href = "http://dev-login.tgcloud.net/login";
-  }
+  window.location.href = process.env.VUE_APP_PASSPORT_URL;
 }
 
 export default user;

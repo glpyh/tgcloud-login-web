@@ -1,5 +1,11 @@
-import { getToken, setToken, removeToken } from "./auth";
-import config from "./config";
+import { config } from "./config";
 import tgCookie from "./cookie";
 
-export { getToken, setToken, removeToken, config, tgCookie };
+function getUrlKey(name) {
+  var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+  var r = window.location.search.substr(1).match(reg);
+  if (r != null) return unescape(r[2]);
+  return null;
+}
+
+export { config, tgCookie, getUrlKey };

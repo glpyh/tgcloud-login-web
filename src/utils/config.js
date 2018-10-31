@@ -1,5 +1,5 @@
 const config = {
-  host: "http://tgscloud.net",
+  host: "http://passport.tgcloud.net",
   key_prefix: "TGCLOUD_",
   secret_key: "^#rwd6Ffz$X5alRN",
   domain: ".tgcloud.net",

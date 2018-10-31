@@ -1,6 +1,6 @@
 import axios from "axios";
 import { Message } from "element-ui";
-// import store from "@/store";
+import store from "@/store";
 
 // create an axios instance
 const service = axios.create({
@@ -12,9 +12,12 @@ const service = axios.create({
 service.interceptors.request.use(
   config => {
     // Do something before request is sent
-    // let redirectURL = "www.baidu.com";
-    // if (redirectURL) store.dispatch("update_redirect_uri", redirectURL);
-
+    if (window.location.href.indexOf("redirectUrl") > -1) {
+      let redirectURL = window.location.href.substring(
+        window.location.href.indexOf("redirectUrl") + "redirectUrl".length + 1
+      );
+      if (redirectURL) store.dispatch("update_redirect_uri", redirectURL);
+    }
     return config;
   },
   error => {

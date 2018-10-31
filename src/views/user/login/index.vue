@@ -46,6 +46,9 @@ export default {
   },
   mounted() {
     this.getImage();
+    if (this.rememberMe) {
+      this.loginForm.userName = this.$store.getters.getLoginName;
+    }
   },
   methods: {
     doLogin() {
@@ -77,11 +80,15 @@ export default {
         }
       })
         .then(res => {
-          this.getImage();
           if (res && res.code === 200) {
             this.$store.dispatch("update_auth_token", res.result);
+            if (this.$store.getters.getRememberMe) {
+              this.$store.dispatch("update_user_info", this.loginForm.userName);
+            }
             window.location.href = this.redirectUri;
+            return;
           }
+          this.getImage();
         })
         .catch(err => {
           console.log(err);

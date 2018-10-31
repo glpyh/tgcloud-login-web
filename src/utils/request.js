@@ -12,10 +12,9 @@ const service = axios.create({
 service.interceptors.request.use(
   config => {
     // Do something before request is sent
-    if (window.location.href.indexOf("redirectUrl") > -1) {
-      let redirectURL = window.location.href.substring(
-        window.location.href.indexOf("redirectUrl") + "redirectUrl".length + 1
-      );
+    const href = window.location.href;
+    if (href.indexOf("redirectUrl") != -1) {
+      let redirectURL = decodeURIComponent(href.split("redirectUrl=")[1]);
       if (redirectURL) store.dispatch("update_redirect_uri", redirectURL);
     }
     return config;

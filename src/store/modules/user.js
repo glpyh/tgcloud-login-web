@@ -18,10 +18,14 @@ const user = {
   },
   getters: {
     getRememberMe: state => {
-      if (!state.rememberMe) {
-        state.rememberMe = !!tgCookie.get(enums.USER.REMEMBER_ME);
-      }
+      const rememberMe = tgCookie.get(enums.USER.REMEMBER_ME);
+      state.rememberMe =
+        rememberMe == null || rememberMe === "false" ? false : true;
       return state.rememberMe;
+    },
+    getLoginName: state => {
+      state.loginName = tgCookie.get(enums.USER.LOGIN_NAME);
+      return state.loginName;
     },
     getRefreshToken: state => {
       if (!state.refreshToken) {
@@ -50,7 +54,7 @@ const user = {
     getRedirectUri: state => {
       if (!state.redirectUri) {
         state.redirectUri = tgCookie.get(enums.USER.REDIRECT_URI)
-          ? tgCookie.get(enums.USER.REDIRECT_URI)
+          ? decodeURI(tgCookie.get(enums.USER.REDIRECT_URI))
           : process.env.VUE_APP_Web;
       }
       return state.redirectUri;
@@ -58,18 +62,15 @@ const user = {
   },
   mutations: {
     updateRememberMe(state) {
-      state.rememberMe = !state.rememberMe;
+      const rememberMe = tgCookie.get(enums.USER.REMEMBER_ME);
+      state.rememberMe = !(rememberMe == null || rememberMe === "false"
+        ? false
+        : true);
       console.info("state.rememberMe", state.rememberMe);
-      if (state.rememberMe) {
-        tgCookie.set({
-          key: enums.USER.REMEMBER_ME,
-          value: state.rememberMe
-        });
-      } else {
-        tgCookie.delete({
-          key: enums.USER.REMEMBER_ME
-        });
-      }
+      tgCookie.set({
+        key: enums.USER.REMEMBER_ME,
+        value: state.rememberMe
+      });
     },
     updateUserInfo(state, loginName) {
       state.loginName = loginName;
@@ -156,7 +157,7 @@ const user = {
             if (res.data.code === 200) {
               commit("updateAuthToken", res.data.result);
             } else {
-              commit("deleteUserInfo");
+              //commit("deleteUserInfo");
               commit("deleteAuthToken");
               commit("deleteRememberMe");
               jumpLoginPage();
